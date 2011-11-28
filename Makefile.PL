@@ -21,6 +21,7 @@ requires 'Acme::LOLCAT';
 requires 'Catalyst::View::TT';
 requires 'Catalyst::View::JSON';
 requires 'Catalyst::Plugin::Unicode';
+requires 'Catalyst::Helper::AuthDBIC';
 
 test_requires 'Test::More' => '0.88';
 build_requires 'Catalyst::Devel';
