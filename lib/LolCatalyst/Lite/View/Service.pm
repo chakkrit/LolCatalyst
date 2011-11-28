@@ -15,6 +15,10 @@ See L<LolCatalyst::Lite>
 
 Catalyst JSON View.
 
+=cut
+
+__PACKAGE__->config({expose_stash => [qw/lol result/]});
+
 =head1 AUTHOR
 
 chakkrit,,,
