@@ -1,1 +1,3 @@
 Run script/lolcatalyst_lite_server.pl to test the application.
+
+Run auth_bootstrap.pl -credential http  to add authentication code to project by creating a SQLite database and DBIx::Class::Schema model, and also modifies the application's root package
