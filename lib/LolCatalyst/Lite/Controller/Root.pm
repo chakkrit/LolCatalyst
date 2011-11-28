@@ -65,11 +65,11 @@ sub end : ActionClass('RenderView') {
 
 =head2 translate
 
-Get lol parameter to call Translate method
+the Translate page ( /translate )
 
 =cut
 
-sub translate :Local {
+sub translate : Local {
   my ($self, $c) = @_;
   my $lol = $c->req->body_params->{lol}; #only for a POST request
     # $c->req->params->{lol} would catch GET or POST
@@ -79,6 +79,18 @@ sub translate :Local {
     result => $c->model('Translate')->translate($lol),
     template => 'index.tt',
   );
+}
+
+=head2 translate_service
+
+the Translate web service
+
+=cut
+
+sub translate_service : Local {
+  my ($self, $c) = @_;
+  $c->forward('translate');
+  $c->stash->{current_view} = 'Service';
 }
 
 =head1 AUTHOR
