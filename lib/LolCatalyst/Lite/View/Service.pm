@@ -1,5 +1,5 @@
 package LolCatalyst::Lite::View::Service;
-
+use warnings;
 use strict;
 use base 'Catalyst::View::JSON';
 
