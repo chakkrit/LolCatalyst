@@ -25,6 +25,7 @@ $request = POST(
     'lol' => 'Can i have a cheese burger?',
   ]
 );
+$request->headers->authorization_basic('fred', 'wilma');
 $response = undef;
 ok( $response = request($request), 'Request to return translation' );
 ok( $response->is_success, 'Translation request successful 2xx' );

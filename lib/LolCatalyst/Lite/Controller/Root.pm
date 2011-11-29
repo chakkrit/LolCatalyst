@@ -89,9 +89,19 @@ the Translate web service
 
 sub translate_service : Local {
   my ($self, $c) = @_;
-  $c->authenticate;
   $c->forward('translate');
   $c->stash->{current_view} = 'Service';
+}
+
+=head2 auto
+
+User authentication
+
+=cut
+
+sub auto : Private {
+  my ($self, $c) = @_;
+  $c->authenticate;
 }
 
 =head1 AUTHOR
