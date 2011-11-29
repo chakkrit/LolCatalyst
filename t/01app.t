@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Test::More tests => 13;
 
-BEGIN { $ENV{LOLCATALYST_LITE_CONFIG_LOCAL_SUFFIX}="test" }
+BEGIN { $ENV{LOLCATALYST_LITE_CONFIG_LOCAL_SUFFIX}="testing" }
 BEGIN { use_ok 'Catalyst::Test', 'LolCatalyst::Lite'}
 use HTTP::Headers;
 use HTTP::Request::Common;
