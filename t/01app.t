@@ -40,6 +40,7 @@ $request = POST(
     'lol' => 'Can i have a cheese burger?',
   ]
 );
+$request->headers->authorization_basic('fred', 'wilma');
 ok( $response = request($request), 'Request to return JSON' );
 ok( $response->is_success, 'Translation request successful 2xx' );
 is( $response->content_type, 'application/json', 'JSON content type' );
