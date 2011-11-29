@@ -39,9 +39,7 @@ our $VERSION = '0.01';
 # details given here can function as a default configuration,
 # with an external configuration file acting as an override for
 # local deployment.
-if ($ENV{APP_TEST}) {
-  __PACKAGE__->config('Plugin::ConfigLoader' => {file => __PACKAGE__->path_to('t/lib/lolcatalyst_lite_testing.conf')});
-}
+
 __PACKAGE__->config(
     name => 'LolCatalyst::Lite',
     # Disable deprecated behavior needed by old applications
