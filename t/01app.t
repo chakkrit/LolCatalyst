@@ -10,6 +10,7 @@ use HTTP::Request::Common;
 # GET request
 
 my $request = GET('http://localhost');
+$request->headers->authorization_basic('fred', 'wilma');
 my $response = request($request);
 ok( $response = request($request), 'Basic request to start page' );
 ok( $response->is_success, 'Start page request successful 2xx' );
