@@ -13,6 +13,7 @@ requires 'Catalyst::Runtime' => '5.90006';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';
+requires 'Const::Fast';
 requires 'Moose';
 requires 'namespace::autoclean';
 requires 'Config::General'; # This should reflect the config file format you've chosen
@@ -20,7 +21,6 @@ requires 'Config::General'; # This should reflect the config file format you've 
 requires 'Acme::LOLCAT';
 requires 'Catalyst::View::TT';
 requires 'Catalyst::View::JSON';
-#requires 'Catalyst::Plugin::Unicode';
 requires 'Catalyst::Helper::AuthDBIC';
 requires 'Catalyst::Test';
 
