@@ -1,12 +1,11 @@
 package LolCatalyst::Lite::Model::Auth;
 
+use warnings;
 use strict;
 use base 'Catalyst::Model::DBIC::Schema';
 
 __PACKAGE__->config(
     schema_class => 'LolCatalyst::Lite::Auth::Schema',
-    
-    
 );
 
 =head1 NAME
