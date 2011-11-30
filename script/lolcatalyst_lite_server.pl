@@ -1,8 +1,12 @@
 #!/usr/bin/env perl
 use warnings;
 use strict;
+#use Const::Fast;
+
+use constant DEFINEVL => 40;
+
 BEGIN {
-    $ENV{CATALYST_SCRIPT_GEN} = 40;
+    $ENV{CATALYST_SCRIPT_GEN} = DEFINEVL;
 }
 
 use Catalyst::ScriptRunner;

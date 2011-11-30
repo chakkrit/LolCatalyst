@@ -2,7 +2,10 @@ package LolCatalyst::Lite::Controller::Root;
 use strict;
 use warnings;
 use Moose;
+#use Const::Fast;
 use namespace::autoclean;
+use constant PAGE_NOTFOUND => 404;
+use constant INTERNAL_SERVER_ERROR => 500;
 
 BEGIN { extends 'Catalyst::Controller' }
 
@@ -44,7 +47,8 @@ Standard 404 error page
 sub default :Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
-    $c->response->status(404);
+#    const $page_notfound => 404;
+    $c->response->status(PAGE_NOTFOUND);
 }
 
 =head2 end
@@ -56,8 +60,9 @@ Attempt to render a view, if needed.
 sub end : ActionClass('RenderView') {
   my ($self, $c) = @_;
   my $errors = scalar @{$c->error};
-  if ($errors) {
-    $c->res->status(500);
+  if ($errors && !$c->debug) {
+    
+    $c->res->status(INTERNAL_SERVER_ERROR);
     $c->res->body('internal server error');
     $c->clear_errors;
   }
