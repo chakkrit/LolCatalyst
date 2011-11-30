@@ -17,7 +17,6 @@ use Catalyst::Runtime 5.80;
 #                 directory
 
 use Catalyst qw/
-    -Debug
     ConfigLoader
     Static::Simple
 
@@ -45,12 +44,9 @@ __PACKAGE__->config(
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header => 1, # Send X-Catalyst header
-);
-
-# Start the application
-__PACKAGE__->config( authentication => {
-    'default_realm' => 'users',
-    'realms' => {
+    authentication => {
+      'default_realm' => 'users',
+      'realms' => {
         'users' => {
             'store' => {
                 'role_column' => 'role_text',
@@ -65,8 +61,16 @@ __PACKAGE__->config( authentication => {
                  'type' => 'basic',
              }
         }
-    },
-});__PACKAGE__->setup();
+      },
+});
+
+
+# Start the application
+__PACKAGE__->setup();
+
+#use Data::Dump qw/dump/;
+#dump __PACKAGE__->config;
+#exit(1);
 
 
 =head1 NAME
