@@ -1,10 +1,10 @@
-use warnings;
 package LolCatalyst::Lite::Translator;
+use warnings;
 use strict;
 use Moose;
-use Acme::LOLCAT ();
-#use namespace::autoclean;
-use namespace::clean -except => 'meta';
+#use Acme::LOLCAT ();
+use namespace::autoclean;
+
 =head1 NAME
 
 LolCatalyst::Lite::Translate - Independent Model
