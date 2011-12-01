@@ -11,10 +11,6 @@ LolCatalyst::Lite::Model::Translator - Catalyst Model
 
 Catalyst Model Interface.
 
-=head2 translate
-
-
-
 =cut
 
 __PACKAGE__->config(
