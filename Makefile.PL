@@ -23,6 +23,7 @@ requires 'Catalyst::View::TT';
 requires 'Catalyst::View::JSON';
 requires 'Catalyst::Helper::AuthDBIC';
 requires 'Catalyst::Test';
+requires 'Catalyst::Model::Adaptor';
 
 test_requires 'Test::More' => '0.88';
 test_requires 'DBD::SQLite';

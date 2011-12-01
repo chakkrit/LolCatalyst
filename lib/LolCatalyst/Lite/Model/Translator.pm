@@ -1,11 +1,7 @@
 package LolCatalyst::Lite::Model::Translator;
 use strict;
 use warnings;
-use Moose;
-use namespace::autoclean;
-use Acme::LOLCAT ();
-
-extends 'Catalyst::Model';
+use base 'Catalyst::Model::Adaptor';
 
 =head1 NAME
 
@@ -13,18 +9,18 @@ LolCatalyst::Lite::Model::Translator - Catalyst Model
 
 =head1 DESCRIPTION
 
-Catalyst Model.
+Catalyst Model Interface.
 
 =head2 translate
 
-Return Some texts when traslate method get text input
+
 
 =cut
 
-sub translate {
-  my ($self, $text) = @_;
-  return Acme::LOLCAT::translate($text);
-}
+__PACKAGE__->config(
+  class => 'LolCatalyst::Lite::Translator',
+  args => {},
+);
 
 =head1 AUTHOR
 
@@ -37,6 +33,5 @@ it under the same terms as Perl itself.
 
 =cut
 
-__PACKAGE__->meta->make_immutable;
 
 1;
