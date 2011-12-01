@@ -78,7 +78,7 @@ sub translate : Local {
     # $c->req->query_params would catch GET params only
   $c->stash(
     lol => $lol,
-    result => $c->model('Translate')->translate($lol),
+    result => $c->model('Translator')->translate($lol),
     template => 'index.tt',
   );
 }

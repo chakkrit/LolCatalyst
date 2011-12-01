@@ -1,4 +1,4 @@
-package LolCatalyst::Lite::Model::Translate;
+package LolCatalyst::Lite::Model::Translator;
 use strict;
 use warnings;
 use Moose;
@@ -9,13 +9,15 @@ extends 'Catalyst::Model';
 
 =head1 NAME
 
-LolCatalyst::Lite::Model::Translate - Catalyst Model
+LolCatalyst::Lite::Model::Translator - Catalyst Model
 
 =head1 DESCRIPTION
 
 Catalyst Model.
 
 =head2 translate
+
+Return Some texts when traslate method get text input
 
 =cut
 
