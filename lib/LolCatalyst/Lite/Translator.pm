@@ -1,10 +1,10 @@
-package LolCatalyst::Lite::Translator;
 use warnings;
+package LolCatalyst::Lite::Translator;
 use strict;
 use Moose;
 use Acme::LOLCAT ();
-use namespace::autoclean;
-
+#use namespace::autoclean;
+use namespace::clean -except => 'meta';
 =head1 NAME
 
 LolCatalyst::Lite::Translate - Independent Model
@@ -19,9 +19,27 @@ Return Some texts when traslate method get text input
 
 =cut
 
+has 'default_target' => (
+  is => 'ro', isa => 'Str', required => 1, default => 'LOLCAT'
+);
+
+has 'translators' => (
+  is => 'ro', isa => 'HashRef', lazy_build => 1
+);
+
+sub _build_translators {
+  my ($self) = @_;
+  return { LOLCAT => LolCatalyst::Lite::Translator::LOLCAT->new };
+}
+
 sub translate {
   my ($self, $text) = @_;
-  return Acme::LOLCAT::translate($text);
+  $self->translate_to($self->default_target, $text);
+}
+
+sub translate_to {
+  my ($self, $target, $text) = @_;
+  $self->translators->{$target}->translate($text);
 }
 
 __PACKAGE__->meta->make_immutable;
