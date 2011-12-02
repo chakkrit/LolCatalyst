@@ -24,11 +24,11 @@ has 'default_target' => (
   is => 'ro', isa => 'Str', required => 1, default => 'LOLCAT'
 );
 
-has 'translators' => (
+has '_translators' => (
   is => 'ro', isa => 'HashRef', lazy_build => 1
 );
 
-sub _build_translators {
+sub _build__translators {
   my ($self) = @_;
   #return { LOLCAT => LolCatalyst::Lite::Translator::LOLCAT->new };
   my $base = __PACKAGE__;
@@ -52,7 +52,7 @@ sub translate {
 
 sub translate_to {
   my ($self, $target, $text) = @_;
-  $self->translators->{$target}->translate($text);
+  $self->_translators->{$target}->translate($text);
 }
 
 __PACKAGE__->meta->make_immutable;
