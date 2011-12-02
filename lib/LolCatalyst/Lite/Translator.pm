@@ -2,8 +2,8 @@ package LolCatalyst::Lite::Translator;
 use warnings;
 use strict;
 use Moose;
-#use Acme::LOLCAT ();
 use namespace::autoclean;
+use LolCatalyst::Lite::Translator::LOLCAT;
 
 =head1 NAME
 
