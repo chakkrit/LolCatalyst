@@ -3,7 +3,8 @@ use warnings;
 use strict;
 use Moose;
 use namespace::autoclean;
-use LolCatalyst::Lite::Translator::LOLCAT;
+#use LolCatalyst::Lite::Translator::LOLCAT;
+use Module::Pluggable::Object;
 
 =head1 NAME
 
@@ -29,7 +30,19 @@ has 'translators' => (
 
 sub _build_translators {
   my ($self) = @_;
-  return { LOLCAT => LolCatalyst::Lite::Translator::LOLCAT->new };
+  #return { LOLCAT => LolCatalyst::Lite::Translator::LOLCAT->new };
+  my $base = __PACKAGE__;
+  my $mp = Module::Pluggable::Object->new(
+    search_path => [$base]
+  );
+  my @classes = $mp->plugins;
+  my %translators;
+  foreach my $class (@classes) {
+    Class::MOP::load_class($class);
+    (my $name = $class) =~ s/^\Q${base}::\E//;
+    $translators{$name} = $class->new;
+  }
+  return \%translators;
 }
 
 sub translate {
