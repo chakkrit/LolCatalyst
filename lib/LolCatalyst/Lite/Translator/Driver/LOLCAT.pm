@@ -10,5 +10,7 @@ sub translate {
   return Acme::LOLCAT::translate($text);
 }
 
+with 'LolCatalyst::Lite::Interface::TranslationDriver';
+
 __PACKAGE__->meta->make_immutable;
 1;

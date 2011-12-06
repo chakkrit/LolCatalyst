@@ -41,4 +41,6 @@ sub translate {
   return $text;
 }
 
+with 'LolCatalyst::Lite::Interface::TranslationDriver';
+
 1;
