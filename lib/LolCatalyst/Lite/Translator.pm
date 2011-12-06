@@ -30,8 +30,7 @@ has '_translators' => (
 
 sub _build__translators {
   my ($self) = @_;
-  #return { LOLCAT => LolCatalyst::Lite::Translator::LOLCAT->new };
-  my $base = __PACKAGE__;
+  my $base = __PACKAGE__.'::Driver';
   my $mp = Module::Pluggable::Object->new(
     search_path => [$base]
   );
