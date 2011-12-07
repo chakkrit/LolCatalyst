@@ -56,6 +56,11 @@ sub translate_to {
   $self->_translators->{$target}->translate($text);
 }
 
+sub can_translate_to {
+  my ($self, $target) = @_;
+  return exists $self->_translators->{$target};
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;

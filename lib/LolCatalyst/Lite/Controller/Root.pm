@@ -37,15 +37,25 @@ sub index :Path :Args(0) {
 
 =head2 default
 
-Standard 404 error page
+Standard default page
 
 =cut
 
 sub default :Path {
-    const my $PAGE_NOTFOUND => 404;
     my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
-    $c->response->status($PAGE_NOTFOUND);
+    $c->detach('/error_404');
+}
+=head2 error_404
+
+Code 404 error page 
+
+=cut
+
+sub error_404 :Private {
+  const my $PAGE_NOTFOUND => 404;
+  my ( $self, $c ) = @_;
+  $c->response->status($PAGE_NOTFOUND);
+  $c->response->body( 'Page not found' );
 }
 
 =head2 end
@@ -59,6 +69,8 @@ sub end : ActionClass('RenderView') {
   my ($self, $c) = @_;
   my $errors = scalar @{$c->error};
   if ($errors && !$c->debug) {
+    $c->log->error("Errors in ${\$c->action}:");
+    $c->log->error($_) for @{$c->error};
     $c->res->status($INTERNAL_SERVER_ERROR);
     $c->res->body('internal server error');
     $c->clear_errors;
@@ -71,11 +83,9 @@ the Translate page ( /translate )
 
 =cut
 
-sub translate : Local {
+sub translate : Private {
   my ($self, $c) = @_;
-  my $lol = $c->req->body_params->{lol}; #only for a POST request
-    # $c->req->params->{lol} would catch GET or POST
-    # $c->req->query_params would catch GET params only
+  my $lol = $c->req->body_params->{lol};
   $c->stash(
     lol => $lol,
     result => $c->model('Translator')->translate($lol),
